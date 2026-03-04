@@ -4,6 +4,21 @@
   <img src="Pic/giaodien1.png" alt="CineMatch Giao diện" width="800"/>
 </p>
 
+<p align="center">
+  <a href="https://cinematch-recommend.up.railway.app/">
+    <img src="https://img.shields.io/badge/🚀 Live Demo-CineMatch-E50914?style=for-the-badge" alt="Live Demo"/>
+  </a>
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Flask-2.0+-000000?style=for-the-badge&logo=flask&logoColor=white" alt="Flask"/>
+  <img src="https://img.shields.io/badge/Deploy-Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white" alt="Railway"/>
+</p>
+
+---
+
+## 🌐 Demo trực tuyến
+
+> ✅ Truy cập ứng dụng tại: **[https://cinematch-recommend.up.railway.app/](https://cinematch-recommend.up.railway.app/)**
+
 ---
 
 ## 📌 Giới thiệu
@@ -39,6 +54,11 @@
   <br/><em>Trang phim xu hướng & đánh giá cao</em>
 </p>
 
+<p align="center">
+  <img src="Pic/giaodien4.png" alt="Trang giới thiệu" width="800"/>
+  <br/><em>Trang giới thiệu hệ thống</em>
+</p>
+
 ---
 
 ## 🧠 Công nghệ sử dụng
@@ -55,6 +75,10 @@
 - **HTML/CSS**, **JavaScript**
 - **Bootstrap 5**, **Font Awesome**, **Google Fonts**
 - **AOS**: Hiệu ứng cuộn trang
+
+### ☁️ Deploy
+- **Railway**: Cloud platform hosting
+- **GitHub**: Version control & CI/CD
 
 ---
 
@@ -149,11 +173,11 @@ $$\text{similarity}(A, B) = \cos(\theta) = \frac{A \cdot B}{\|A\| \|B\|}$$
 - Python 3.8+
 - Pip
 
-### 🔨 Các bước triển khai
+### 🔨 Các bước triển khai local
 
 ```bash
 # 1. Clone repo
-git clone <repository-url>
+git clone https://github.com/phido0410/Movie_Recommendation_System.git
 cd Movie_Recommendation_System
 
 # 2. Cài đặt thư viện
@@ -165,6 +189,11 @@ python3 app.py
 ```
 
 ➡️ Mở trình duyệt và truy cập: `http://localhost:6789`
+
+### 🚀 Deploy trên Railway
+
+Ứng dụng đã được deploy tại:  
+**[https://cinematch-recommend.up.railway.app/](https://cinematch-recommend.up.railway.app/)**
 
 ---
 
@@ -180,7 +209,7 @@ python3 app.py
 - RAM sử dụng: ~50-100MB thay vì ~1.5GB
 
 ### 3. Tìm kiếm thông minh
-- Tìm kiếm realtime với hình ảnh minh họa rõ ràng
+- Tìm kiếm realtime với gợi ý thông minh
 - Hỗ trợ fuzzy matching
 
 ### 4. UI hiện đại
