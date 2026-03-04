@@ -14,7 +14,7 @@ class MovieRecommender:
     def __init__(self, csv_path='data/Data_Movies_ok.csv', similarity_matrix_path='data/similarity_matrix.npz'):
         self.csv_path = csv_path
         self.similarity_matrix_path = similarity_matrix_path
-        self.gdrive_id = '1q7EYa332RknMmYqTcBsn_5eH_VjCLbMm'
+        self.gdrive_id = '1Q73cP4_n_aVEUn8hKLJPyeepfcLipDCm'
         
         # Đọc dữ liệu phim
         self.movies_df = self._load_data()
@@ -55,12 +55,6 @@ class MovieRecommender:
         start_time = time.time()
         print("Computing similarity matrix...")
 
-        # Giới hạn số phim để tiết kiệm RAM (chỉ lấy top 5000 phim phổ biến nhất)
-        if len(self.movies_df) > 5000:
-            print(f"Limiting to top 5000 movies to save memory (original: {len(self.movies_df)})")
-            df = self.movies_df.nlargest(5000, 'vote_count').copy()
-            self.movies_df = df.reset_index(drop=True)
-
         # Tạo TF-IDF vectorizer với giới hạn features để tiết kiệm RAM
         tfidf = TfidfVectorizer(stop_words='english', max_features=5000)
         tfidf_matrix = tfidf.fit_transform(self.movies_df['overview'])
@@ -69,21 +63,18 @@ class MovieRecommender:
         n = tfidf_matrix.shape[0]
         batch_size = 500
         
-        # Lưu dưới dạng sparse matrix thay vì dense để tiết kiệm RAM
         rows = []
         for i in range(0, n, batch_size):
             end = min(i + batch_size, n)
             batch_similarity = cosine_similarity(tfidf_matrix[i:end], tfidf_matrix)
-            # Chuyển thành sparse (ngưỡng 0.1 để bỏ qua các giá trị quá nhỏ)
             batch_sparse = sparse.csr_matrix(
-                np.where(batch_similarity > 0.1, batch_similarity, 0),
+                np.where(batch_similarity > 0.05, batch_similarity, 0),
                 dtype=np.float32
             )
             rows.append(batch_sparse)
             print(f"Progress: {end}/{n}")
-            del batch_similarity  # Giải phóng RAM ngay sau khi dùng xong
+            del batch_similarity
 
-        # Ghép các batch lại thành sparse matrix hoàn chỉnh
         similarity_sparse = sparse.vstack(rows)
         
         print(f"Similarity matrix computation completed in {time.time() - start_time:.2f} seconds")
